@@ -8,6 +8,7 @@ Reference: https://cwiki.apache.org/confluence/display/RANGER/File+Source+User+G
   - OS visibility to the different domains is already configured.
   - You have the groups you need to sync, it will sync the groups and the users belonging to those groups. Similar behavior to Ranger sync groups first with user map.
   - Python ldap and python-ldap packages are installed.  
+  - It will not handle duplicate users, the domain with the higher priority will be synced first. Duplicate users on other domains will be ignored.
 
 ### Insturctions:
 
