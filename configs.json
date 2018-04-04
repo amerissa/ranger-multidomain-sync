@@ -1,0 +1,22 @@
+{
+  "domains" : [
+    {
+    "name" : "domain1",
+    "ldapurl" : "ldap://server:389",
+    "username" : "aa@AA.COM",
+    "password" : "aaAAaa",
+    "basedn" : "dc=AA,dc=COM",
+    "groups" : "aa,bb,cc,dd",
+    "priority" : 1
+    },
+    {
+    "name" : "domain2",
+    "ldapurl" : "ldap://server2:389",
+    "username" : "bb@BB.COM",
+    "password" : "bbBBbb",
+    "basedn" : "dc=BB,dc=COM",
+    "groups" : "ee,ff,gg,hh",
+    "priority" : 2
+    }
+  ]
+}
