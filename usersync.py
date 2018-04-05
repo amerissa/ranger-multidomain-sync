@@ -57,7 +57,7 @@ class usersync(object):
         logger.debug('Creating groups and users dictionary')
         for group in self.groups:
             result = self.server.search_s(self.basedn, ldap.SCOPE_SUBTREE, '(&(objectClass=user)(memberof=%s))' % (self.samtocn(group, 'group')), ['sAMAccountName'])
-            users = [b['sAMAccountName'][0] for a, b in result if a is not None]
+            users = [b['sAMAccountName'][0].lower() for a, b in result if a is not None]
             self.groupslist.update({group: users})
             for user in users:
                 if user not in self.users:
