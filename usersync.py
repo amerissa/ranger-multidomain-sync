@@ -86,17 +86,32 @@ def getkey(item):
     return(item['priority'])
 
 
+def formatted(format, results):
+    if format == "JSON":
+        data = json.dumps(results, indent=4, sort_keys=True)
+    else:
+        data = ''
+        for user in results:
+            data += "%s,%s\n" % (user, ",".join(results[user]))
+    return(data)
+
+
 def main():
     parser = optparse.OptionParser(usage="usage: %prog [options]")
     parser.add_option("-c", "--config-file", dest="configs", default="./configs.json", help="Configs file to read from. Must follow json format")
     parser.add_option("-l", "--log-file", dest="logfile", default="./usersync.log", help="Log file location")
-    parser.add_option("-o", "--output-file", dest="outputfile", default="./UserGroupSyncFile.json", help="Output file location")
+    parser.add_option("-o", "--output-file", dest="outputfile", default="./UserGroupSyncFile", help="Output file location")
     parser.add_option("-d", "--debug", dest="debug", action="count", help="Debugging logs")
+    parser.add_option("-f", "--output-format", dest="format", default="JSON", help="Output format: either JSON or CSV")
     (options, args) = parser.parse_args()
     configs = options.configs
     logfile = options.logfile
     outputfile = options.outputfile
     debug = options.debug
+    format = options.format
+    if format not in ['JSON', 'CSV']:
+        print("Invalid output format: %s. Use JSON or CSV" % (format))
+        sys.exit(1)
     global logger
     logger = logging.getLogger('usersync')
     hdlr = logging.FileHandler(logfile)
@@ -131,7 +146,7 @@ def main():
         setup.close()
         logger.info('Ended Sync for domain %s' % (domain['name']))
     output = open(outputfile, 'w')
-    output.write(json.dumps(finalresults, indent=4, sort_keys=True))
+    output.write(formatted(format, finalresults))
     output.close()
 
 
