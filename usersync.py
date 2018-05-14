@@ -6,6 +6,7 @@ import configparser
 import logging
 import optparse
 import sys
+import base64
 
 
 class usersync(object):
@@ -13,7 +14,7 @@ class usersync(object):
         self.ldapurl = configs['ldapurl']
         self.basedn = configs['basedn']
         self.username = configs['username']
-        self.password = configs['password']
+        self.password = base64.b64decode(configs['password'])
         self.groups = configs['groups'].lower().split(',')
         self.users = []
         self.groupslist = {}

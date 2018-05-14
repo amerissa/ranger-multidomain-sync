@@ -12,6 +12,9 @@ With the CSV Option you can have the Usersync daemon ingest the file automatical
   - Python ldap and python-ldap packages are installed.  
   - It will not handle duplicate users, the domain with the higher priority will be synced first. Duplicate users on other domains will be ignored.
 
+### Password Encryption:
+To avoid storing passwords in clear text. Use the script encryptpassworrd.py to encrypt the passwords before storing them in the configs file
+
 ### Instructions:
 
   - Edit the configuration file and define your domains there.
