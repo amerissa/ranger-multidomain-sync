@@ -127,7 +127,7 @@ def main():
     try:
         definitions = json.loads(open(configs).read())
     except:
-        logger.ERROR("Cannot read configs file %s" % (configs))
+        logger.error("Cannot read configs file %s" % (configs))
         print("Cannot read configs file %s" % (configs))
         sys.exit(1)
     finalresults = {}

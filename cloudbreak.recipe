@@ -1,0 +1,4 @@
+cbserver=
+yum -y install python-ldap.x86_64 python-configparser.noarch
+rsync -arP ec2-user@$cbserver:~/ranger-multidomain-sync /var/lib/
+ { crontab -l ; echo '*/5 * * * * /var/lib/ranger-multidomain-sync/usersync.py -c /var/lib/ranger-multidomain-sync/configs.json -o /var/lib/ranger-multidomain-sync/UserGroupSyncFile -f CSV'; } | crontab  -
